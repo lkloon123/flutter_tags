@@ -391,18 +391,18 @@ class _ItemTagsState extends State<ItemTags> {
                         ),
                         child: widget.removeButton!.padding as Widget? ??
                             Icon(
-                              widget.removeButton.icon,
+                              widget.removeButton!.icon ?? Icons.clear,
                               color: widget.removeButton!.color ?? Colors.white,
                               size: (widget.removeButton!.size ?? 12) *
                                   (widget.textStyle.fontSize! / 14),
                             ),
                       ),
                       onTap: () {
-                        if (widget.removeButton.onPressed != null) {
-                          widget.removeButton.onPressed(Item(
+                        if (widget.removeButton!.onPressed != null) {
+                          widget.removeButton!.onPressed!(Item(
                             index: widget.index,
-                            title: _dataList.title,
-                            active: _dataList.active,
+                            title: _dataList!.title,
+                            active: _dataList!.active,
                             customData: widget.customData));
                         }
                         if (widget.removeButton!.onRemoved != null) {
@@ -506,5 +506,5 @@ class ItemTagsRemoveButton {
 
   /// callback
   final OnRemovedCallback? onRemoved;
-  final OnPressedCallback onPressed;
+  final OnPressedCallback? onPressed;
 }
